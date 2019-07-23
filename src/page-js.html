@@ -1,0 +1,98 @@
+<script>
+  // first we need to create a stage
+  var stage = new Konva.Stage({
+    container: 'konva-stage', // id of container <div>
+    width: 280,
+    height: 280
+  });
+
+  // then create layer
+  var layer = new Konva.Layer();
+
+  // create our shape
+  var circle = new Konva.Circle({
+    x: stage.width() / 2,
+    y: stage.height() / 2,
+    radius: 70,
+    fill: 'red',
+    stroke: 'black',
+    strokeWidth: 4
+  });
+
+  // add the shape to the layer
+  layer.add(circle);
+
+  // add the layer to the stage
+  stage.add(layer);
+
+  // draw the image
+  layer.draw();
+
+  $(document).ready(function() {
+    $('#drop-container').on('dragenter', function(e) {
+      e.preventDefault();
+      $(this).css('border', '#39b311 2px dashed');
+      $(this).css('background', '#f1ffef');
+    });
+
+    $('#drop-container').on('dragover', function(e) {
+      e.preventDefault();
+    });
+
+    $('#drop-container').on('drop', function(e) {
+      $(this).css('border', '#07c6f1 2px dashed');
+      $(this).css('background', '#FFF');
+      e.preventDefault();
+      var images = e.originalEvent.dataTransfer.files;
+      createFormData(images);
+    });
+  });
+
+  function createFormData(images) {
+    console.log('TCL: createFormData -> images', images);
+  }
+
+  //   function stopDefault(e) {
+  //     e.preventDefault();
+  //     e.stopPropagation();
+  //   }
+  //   async function multiFile(e) {
+  //     e.preventDefault(); // Seems to need to stop it here and in stopDefault else we get an image in the browser.
+  //     e.stopPropagation();
+  //     const imageFiles = [...e.dataTransfer.files]; // Change from filelist to traditional array. Also immutable.
+  //     console.log('TCL: multiFile -> imageFiles', imageFiles);
+  //     //   console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
+  //     //   console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
+  //     var options = {
+  //       maxSizeMB: 1,
+  //       maxWidthOrHeight: 1000,
+  //       useWebWorker: true
+  //     };
+  //     try {
+  //       let count = 0;
+  //       let receiptsBatch = [];
+  //       let blobsBatch = [];
+  //       for (let image of imageFiles) {
+  //         count++;
+  //         const compressedFile = await imageCompression(image, options);
+  //         console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
+  //         console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+  //         let dataUrl = await blobToDataURL(compressedFile);
+  //         this.images.push({
+  //           compressedFile,
+  //           dataUrl
+  //         });
+  //         // TODO Later: Image correction options to user between uploading images and sending to db <-- for now it's up to user before upload.
+
+  //         // TODO Soon: Establish data structure for Receipts and system <-- High level on paper.
+  //       }
+  //       // this.images = blobsBatch;
+  //       console.log('TCL: multiFile -> receiptsBatch', receiptsBatch);
+  //       const result = await db.bulkDocs(receiptsBatch);
+  //       console.log('TCL: multiFile -> result', result);
+  //       this.showCarousel = true;
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+</script>

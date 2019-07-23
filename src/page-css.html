@@ -1,0 +1,65 @@
+<style>
+  #drop-container {
+    background: #ffffff;
+    min-height: 200px;
+    padding: 10px;
+    border: #07c6f1 2px dashed;
+    max-width: 600px;
+  }
+
+  .drop-area-text {
+    text-align: center;
+    color: #e0dfdf;
+    font-size: 1.5em;
+    padding-bottom: 20px;
+  }
+
+  .drop-image {
+    display: none;
+  }
+
+  .preview {
+    margin: 20px;
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+  }
+
+  @media screen and (max-width: 500px) {
+    .preview {
+      margin: 15px;
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .dropbox {
+    outline: 2px dashed grey;
+    /* the dash box */
+    outline-offset: -10px;
+    background: lightcyan;
+    color: dimgray;
+    padding: 10px 10px;
+    min-height: 200px;
+    /* minimum height */
+    position: relative;
+    cursor: pointer;
+  }
+  .input-file {
+    opacity: 0;
+    /* invisible but it's there! */
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    cursor: pointer;
+  }
+  .dropbox:hover {
+    background: lightblue;
+    /* when mouse over to the drop zone, change color */
+  }
+  .dropbox p {
+    font-size: 1.2em;
+    text-align: center;
+    padding: 50px 0;
+  }
+</style>
